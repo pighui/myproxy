@@ -3,7 +3,7 @@
 
 如果对您有帮助，希望给个 Star ⭐，谢谢！😁😘🎁🎉
 
-Github 项目地址 ：[pighui](https://github.com/pighui)/[myproxy](<https://github.com/pighui/myproxy>>)
+Github 项目地址 ：[pighui](https://github.com/pighui)/[myproxy](<https://github.com/pighui/myproxy>)
 
 # 简介
 
