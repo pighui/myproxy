@@ -3,7 +3,7 @@
 
 如果对您有帮助，希望给个 Star ⭐，谢谢！😁😘🎁🎉
 
-Github 项目地址 ：[pighui](https://github.com/pighui)/[myproxy](<<https://github.com/pighui/myproxy>>)
+Github 项目地址 ：[pighui](https://github.com/pighui)/[myproxy](<https://github.com/pighui/myproxy>>)
 
 # 简介
 
@@ -13,15 +13,7 @@ Github 项目地址 ：[pighui](https://github.com/pighui)/[myproxy](<<https://g
 
 # 项目结构
 
-myproxy
-   |----spider——爬虫类
-   |----worker——爬取器、调度器、测试器
-   |----web——前端
-   |      |----api——路由接口
-   |      |----app——flask应用
-   |      |----dao——数据库接口
-   |----settings.py——配置相关
-   |----run.py——启动脚本
+![](test_imgs/project.png)
 
 # 克隆项目
 
@@ -110,7 +102,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](./test_imgs/getone.png)
+![](test_imgs/getone.png)
 
 ## 2.获取指定数量、指定协议、指定匿名度的排名前几的几条代理
 
@@ -126,7 +118,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](./test_imgs/get.png)
+![](test_imgs/get.png)
 
 ## 3.获取数据库中的所有代理
 
@@ -136,7 +128,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](./test_imgs/getall.png)
+![](test_imgs/getall.png)
 
 ## 4.增加一条代理到数据库
 
@@ -148,7 +140,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](./test_imgs/post.png)
+![](test_imgs/post.png)
 
 ## 5.更新数据库中的一条代理
 
@@ -160,7 +152,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](./test_imgs/put.png)
+![](test_imgs/put.png)
 
 ## 6.删除数据库中的一条代理
 
@@ -172,7 +164,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](./test_imgs/delete.png)
+![](test_imgs/delete.png)
 
 # 写在最后
 
