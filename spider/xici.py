@@ -7,14 +7,14 @@
 # 需要爬取的页面
 # https://www.xicidaili.com/nn/ 高匿
 # https://www.xicidaili.com/nt/ 透明
+
 import time
 from queue import Queue
-
 import requests
 from lxml import etree
-
+from util.html import to_html
 from worker.tester import Tester
-from settings import DELAY, MAX_PAGE, DEBUG
+from settings import DELAY, MAX_PAGE, DEBUG, GETTER_DELAY
 from util.header import get_header
 
 
@@ -37,12 +37,13 @@ class Xici():
         if not self.q_xici.empty():
             url = self.q_xici.get()
             if DEBUG:
-                print('正在爬取： ',url)
+                print('正在爬取： ', url)
             try:
                 response = requests.get(url=url, headers=get_header())
                 time.sleep(self.delay)
                 if response.ok:
-                    html = response.text
+                    resp_bytes = response.content
+                    html = to_html(resp_bytes)
                     self.parse_xici(html)
             except:
                 # 请求出错,将url重新放入队列
@@ -61,3 +62,4 @@ class Xici():
                      range(len(ip_list))]
         for data in data_list:
             self.test_xici.save_ip(data)
+        self.get_xici()

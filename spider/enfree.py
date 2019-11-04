@@ -6,15 +6,14 @@
 
 # 需要爬取的页面
 # http://www.89ip.cn/index.html
-from queue import Queue
 
-from lxml import etree
 import time
+from queue import Queue
+from lxml import etree
 import requests
-
 from util.html import to_html
 from worker.tester import Tester
-from settings import MAX_PAGE, DELAY, DEBUG
+from settings import MAX_PAGE, DELAY, DEBUG, GETTER_DELAY
 from util.header import get_header
 
 
@@ -38,7 +37,7 @@ class Enfree():
         if not self.q_enfree.empty():
             url = self.q_enfree.get()
             if DEBUG:
-                print('正在爬取： ',url)
+                print('正在爬取： ', url)
             try:
                 response = requests.get(url=url, headers=get_header())
                 time.sleep(self.delay)
@@ -64,3 +63,4 @@ class Enfree():
                      range(len(ip_list))]
         for data in data_list:
             self.test_enfree.save_ip(data)
+        self.get_enfree()

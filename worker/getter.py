@@ -2,7 +2,9 @@
 # -*-coding:UTF-8-*-
 # __author__ : pighui
 # __time__ : 2019-10-31 下午8:02
-import threading
+
+
+from threading import Thread
 from spider.enfree import Enfree
 from spider.kuai import Kuai
 from spider.qiyun import Qiyun
@@ -10,8 +12,9 @@ from spider.ssfree import Ssfree
 from spider.xici import Xici
 
 
-class Getter():
+class Getter(Thread):
     def __init__(self):
+        super().__init__()
         self.ssfree_spider = Ssfree()
         self.enfree_spider = Enfree()
         self.kuai_spider = Kuai()
@@ -21,13 +24,12 @@ class Getter():
         self.thread_list = []
         # 创建线程列表
         for task in self.task_list:
-            t = threading.Thread(target=task)
+            t = Thread(target=task)
             self.thread_list.append(t)
 
     def run(self):
         # 启动线程
-        for thread in self.thread_list:
-            thread.setDaemon(True)
-            thread.start()
-        for thread in self.thread_list:
-            thread.join()
+        for t in self.thread_list:
+            t.start()
+        for t in self.thread_list:
+            t.join()

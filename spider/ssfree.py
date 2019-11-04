@@ -6,13 +6,13 @@
 
 # 需要爬取的页面
 # http://www.66ip.cn/index.html
-from queue import Queue
 
+from queue import Queue
 from lxml import etree
 import time
 import requests
 from worker.tester import Tester
-from settings import MAX_PAGE, DELAY, DEBUG
+from settings import MAX_PAGE, DELAY, DEBUG, GETTER_DELAY
 from util.header import get_header
 from util.html import to_html
 
@@ -35,7 +35,7 @@ class Ssfree():
         if not self.q_ssfree.empty():
             url = self.q_ssfree.get()
             if DEBUG:
-                print('正在爬取： ',url)
+                print('正在爬取： ', url)
             try:
                 response = requests.get(url=url, headers=get_header())
                 time.sleep(self.delay)
@@ -61,3 +61,4 @@ class Ssfree():
                          range(len(ip_list))]
             for data in data_list:
                 self.test_ssfree.save_ip(data)
+        self.get_ssfree()

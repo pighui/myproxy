@@ -5,10 +5,9 @@
 
 
 import requests
-from settings import TIMEOUT, TEST_URL, MAX_SCORE, VALID_STATUS_CODES, HOST, PORT, DELAY
+from settings import TIMEOUT, TEST_URL, MAX_SCORE, VALID_STATUS_CODES, DELAY, TESTER_DELAY
 from util.header import get_header
 import time
-
 from web.dao.ip_dao import IPDao
 
 

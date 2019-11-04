@@ -38,13 +38,14 @@ DB_CONFIG = {
 
 # 数据库名
 DATABASE_NAME = 'proxy'
+
 # 数据库表名
 TABLE_NAME = 'proxies'
 
 # flask配置
 HOST = '0.0.0.0'
 # 设置端口
-PORT = '8880'
+PORT = '8888'
 
 # 是否启动测试器
 TESTER_ENABLED = True
