@@ -10,27 +10,24 @@ from spider.ssfree import Ssfree
 from spider.xici import Xici
 
 
-class Getter(threading.Thread):
+class Getter():
     def __init__(self):
-        threading.Thread.__init__(self)
+        self.ssfree_spider = Ssfree()
+        self.enfree_spider = Enfree()
+        self.kuai_spider = Kuai()
+        self.qiyun_spider = Qiyun()
+        self.xici_spider = Xici()
+        self.task_list = [self.ssfree_spider, self.enfree_spider, self.kuai_spider, self.qiyun_spider, self.xici_spider]
+        self.thread_list = []
+        # 创建线程列表
+        for task in self.task_list:
+            t = threading.Thread(target=task)
+            self.thread_list.append(t)
 
     def run(self):
-        ssfree_spider = Ssfree()
-        enfree_spider = Enfree()
-        kuai_spider = Kuai()
-        qiyun_spider = Qiyun()
-        xici_spider = Xici()
-        task_list = [ssfree_spider, enfree_spider, kuai_spider, qiyun_spider, xici_spider]
-        thread_list = []
-
-        # 创建线程列表
-        for task in task_list:
-            t = threading.Thread(target=task)
-            thread_list.append(t)
-
         # 启动线程
-        for thread in thread_list:
+        for thread in self.thread_list:
             thread.setDaemon(True)
             thread.start()
-        for thread in thread_list:
+        for thread in self.thread_list:
             thread.join()

@@ -18,7 +18,6 @@ from util.header import get_header
 
 
 class Kuai():
-
     def __init__(self):
         self.urls = ['https://www.kuaidaili.com/free/inha/' + str(i + 1) + '/' for i in range(MAX_PAGE)] + \
                     ['https://www.kuaidaili.com/free/intr/' + str(i + 1) + '/' for i in range(MAX_PAGE)]
@@ -27,27 +26,25 @@ class Kuai():
         self.test_kuai = Tester()
         self.init_queue()
         self.get_kuai()
-
     def init_queue(self):
         for url in self.urls:
             self.q_kuai.put(url)
-
     def get_kuai(self):
-        url = self.q_kuai.get()
-        if DEBUG:
-            print('正在爬取： ',url)
-        try:
-            response = requests.get(url=url, headers=get_header())
-            time.sleep(self.delay)
-            if response.ok:
-                html = response.text
-                self.parse_kuai(html)
-        except:
-            # 请求出错,将url重新放入队列
-            self.q_kuai.put(url)
-            # 调用自身
-            self.get_kuai()
-
+        if not self.q_kuai.empty():
+            url = self.q_kuai.get()
+            if DEBUG:
+                print('正在爬取： ',url)
+            try:
+                response = requests.get(url=url, headers=get_header())
+                time.sleep(self.delay)
+                if response.ok:
+                    html = response.text
+                    self.parse_kuai(html)
+            except:
+                # 请求出错,将url重新放入队列
+                self.q_kuai.put(url)
+                # 调用自身
+                self.get_kuai()
     def parse_kuai(self, html):
         root = etree.HTML(html)
         ip_list = root.xpath("//div[@id='list']//tbody/tr/td[1]/text()")

@@ -35,21 +35,22 @@ class Enfree():
             self.q_enfree.put(url)
 
     def get_enfree(self):
-        url = self.q_enfree.get()
-        if DEBUG:
-            print('正在爬取： ',url)
-        try:
-            response = requests.get(url=url, headers=get_header())
-            time.sleep(self.delay)
-            if response.ok:
-                resp_bytes = response.content
-                html = to_html(resp_bytes)
-                self.parse_enfree(html)
-        except:
-            # 请求出错,将url重新放入队列
-            self.q_enfree.put(url)
-            # 调用自身
-            self.get_enfree()
+        if not self.q_enfree.empty():
+            url = self.q_enfree.get()
+            if DEBUG:
+                print('正在爬取： ',url)
+            try:
+                response = requests.get(url=url, headers=get_header())
+                time.sleep(self.delay)
+                if response.ok:
+                    resp_bytes = response.content
+                    html = to_html(resp_bytes)
+                    self.parse_enfree(html)
+            except:
+                # 请求出错,将url重新放入队列
+                self.q_enfree.put(url)
+                # 调用自身
+                self.get_enfree()
 
     def parse_enfree(self, html):
         root = etree.HTML(html)

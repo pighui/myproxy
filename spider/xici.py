@@ -34,20 +34,21 @@ class Xici():
             self.q_xici.put(url)
 
     def get_xici(self):
-        url = self.q_xici.get()
-        if DEBUG:
-            print('正在爬取： ',url)
-        try:
-            response = requests.get(url=url, headers=get_header())
-            time.sleep(self.delay)
-            if response.ok:
-                html = response.text
-                self.parse_xici(html)
-        except:
-            # 请求出错,将url重新放入队列
-            self.q_xici.put(url)
-            # 调用自身
-            self.get_xici()
+        if not self.q_xici.empty():
+            url = self.q_xici.get()
+            if DEBUG:
+                print('正在爬取： ',url)
+            try:
+                response = requests.get(url=url, headers=get_header())
+                time.sleep(self.delay)
+                if response.ok:
+                    html = response.text
+                    self.parse_xici(html)
+            except:
+                # 请求出错,将url重新放入队列
+                self.q_xici.put(url)
+                # 调用自身
+                self.get_xici()
 
     def parse_xici(self, html):
         root = etree.HTML(html)

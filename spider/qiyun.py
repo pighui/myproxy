@@ -31,20 +31,21 @@ class Qiyun():
             self.q_qiyun.put(url)
 
     def get_qiyun(self):
-        url = self.q_qiyun.get()
-        if DEBUG:
-            print('正在爬取： ',url)
-        try:
-            response = requests.get(url=url, headers=get_header())
-            time.sleep(self.delay)
-            if response.ok:
-                html = response.text
-                self.parse_qiyun(html)
-        except:
-            # 请求出错,将url重新放入队列
-            self.q_qiyun.put(url)
-            # 调用自身
-            self.get_qiyun()
+        if not self.q_qiyun.empty():
+            url = self.q_qiyun.get()
+            if DEBUG:
+                print('正在爬取： ',url)
+            try:
+                response = requests.get(url=url, headers=get_header())
+                time.sleep(self.delay)
+                if response.ok:
+                    html = response.text
+                    self.parse_qiyun(html)
+            except:
+                # 请求出错,将url重新放入队列
+                self.q_qiyun.put(url)
+                # 调用自身
+                self.get_qiyun()
 
     def parse_qiyun(self, html):
         root = etree.HTML(html)

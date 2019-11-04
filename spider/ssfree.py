@@ -32,21 +32,22 @@ class Ssfree():
             self.q_ssfree.put(url)
 
     def get_ssfree(self):
-        url = self.q_ssfree.get()
-        if DEBUG:
-            print('正在爬取： ',url)
-        try:
-            response = requests.get(url=url, headers=get_header())
-            time.sleep(self.delay)
-            if response.ok:
-                resp_bytes = response.content
-                html = to_html(resp_bytes)
-                self.parse_ssfree(html)
-        except:
-            # 请求出错,将url重新放入队列
-            self.q_ssfree.put(url)
-            # 调用自身
-            self.get_ssfree()
+        if not self.q_ssfree.empty():
+            url = self.q_ssfree.get()
+            if DEBUG:
+                print('正在爬取： ',url)
+            try:
+                response = requests.get(url=url, headers=get_header())
+                time.sleep(self.delay)
+                if response.ok:
+                    resp_bytes = response.content
+                    html = to_html(resp_bytes)
+                    self.parse_ssfree(html)
+            except:
+                # 请求出错,将url重新放入队列
+                self.q_ssfree.put(url)
+                # 调用自身
+                self.get_ssfree()
 
     def parse_ssfree(self, html):
         root = etree.HTML(html)
