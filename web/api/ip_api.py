@@ -1,3 +1,5 @@
+import random
+
 from flask import Blueprint, jsonify
 from flask import request
 
@@ -27,6 +29,11 @@ def proxy_ip():
     })
     return jsonify(result)
 
+# 获取当前速度最快的代理
+@blue.route('/ip/random/', methods=('GET',))
+def random_ip():
+    result = random.choice(dao.query_all())
+    return jsonify(result)
 
 # 保存代理信息或者更新代理信息的接口
 @blue.route('/ip/', methods=('POST', 'PUT'))
