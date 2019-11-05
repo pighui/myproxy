@@ -13,7 +13,7 @@ Github 项目地址 ：[pighui](https://github.com/pighui)/[myproxy](<https://gi
 
 # 项目结构
 
-![](https://github.com/pighui/myproxy/raw/master/test_imgs/project.png)
+![](test_imgs/project.png)
 
 # 克隆项目
 
@@ -33,9 +33,7 @@ git clone git@github.com:pighui/myproxy.git
 
 ### 3.修改配置文件
 
-```bash
-cd myproxy
-```
+修改项目根目录下的settings.py文件
 
 ### 4.安装依赖包
 
@@ -102,7 +100,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](https://github.com/pighui/myproxy/raw/master/test_imgs/getone.png)
+![](test_imgs/getone.png)
 
 ## 2.随机获取一个代理
 
@@ -112,7 +110,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](https://github.com/pighui/myproxy/raw/master/test_imgs/random.png)
+![](test_imgs/random.png)
 
 ## 3.获取指定数量、指定协议、指定匿名度的排名前几的几条代理
 
@@ -128,7 +126,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](https://github.com/pighui/myproxy/raw/master/test_imgs/get.png)
+![](test_imgs/get.png)
 
 ## 4.获取数据库中的所有代理
 
@@ -138,7 +136,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](https://github.com/pighui/myproxy/raw/master/test_imgs/getall.png)
+![](test_imgs/getall.png)
 
 ## 5.增加一条代理到数据库
 
@@ -150,7 +148,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](https://github.com/pighui/myproxy/raw/master/test_imgs/post.png)
+![](test_imgs/post.png)
 
 ## 6.更新数据库中的一条代理
 
@@ -162,11 +160,11 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](https://github.com/pighui/myproxy/raw/master/test_imgs/put.png)
+![](test_imgs/put.png)
 
 ## 7.删除数据库中的一条代理
 
-接口：http://127.0.0.1:8888/ip/<string:ip>/
+接口：http://127.0.0.1:8888/ip/string:ip/
 
 请求方式：DELETE
 
@@ -174,7 +172,7 @@ if __name__ == '__main__':
 
 调用示例：
 
-![](https://github.com/pighui/myproxy/raw/master/test_imgs/delete.png)
+![](test_imgs/delete.png)
 
 # 写在最后
 

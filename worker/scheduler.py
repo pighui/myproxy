@@ -27,7 +27,9 @@ class Scheduler():
         getter = Getter()
         while True:
             getter.run()
-            time.sleep(GETTER_DELAY * 60 * 60)
+            time.sleep(1)
+            print('休眠好了')
+            # time.sleep(GETTER_DELAY * 60 * 60)
 
     def schedule_api(self):
         """
