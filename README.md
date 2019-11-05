@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
 # 接口说明
 
-## 1.获取最快的一个非匿名的http代理
+## 1.获取最快的一个代理
 
 接口：http://127.0.0.1:8888/ip/
 
@@ -104,7 +104,17 @@ if __name__ == '__main__':
 
 ![](https://github.com/pighui/myproxy/raw/master/test_imgs/getone.png)
 
-## 2.获取指定数量、指定协议、指定匿名度的排名前几的几条代理
+## 2.随机获取一个代理
+
+接口：http://127.0.0.1:8888/ip/random/
+
+请求方式：GET
+
+调用示例：
+
+![](https://github.com/pighui/myproxy/raw/master/test_imgs/random.png)
+
+## 3.获取指定数量、指定协议、指定匿名度的排名前几的几条代理
 
 接口：http://127.0.0.1:8888/ip/?protocol=&anonymity=&count=
 
@@ -120,7 +130,7 @@ if __name__ == '__main__':
 
 ![](https://github.com/pighui/myproxy/raw/master/test_imgs/get.png)
 
-## 3.获取数据库中的所有代理
+## 4.获取数据库中的所有代理
 
 接口：http://127.0.0.1:8888/ip/all/
 
@@ -130,7 +140,7 @@ if __name__ == '__main__':
 
 ![](https://github.com/pighui/myproxy/raw/master/test_imgs/getall.png)
 
-## 4.增加一条代理到数据库
+## 5.增加一条代理到数据库
 
 接口：http://127.0.0.1:8888/ip/
 
@@ -142,7 +152,7 @@ if __name__ == '__main__':
 
 ![](https://github.com/pighui/myproxy/raw/master/test_imgs/post.png)
 
-## 5.更新数据库中的一条代理
+## 6.更新数据库中的一条代理
 
 接口：http://127.0.0.1:8888/ip/
 
@@ -154,7 +164,7 @@ if __name__ == '__main__':
 
 ![](https://github.com/pighui/myproxy/raw/master/test_imgs/put.png)
 
-## 6.删除数据库中的一条代理
+## 7.删除数据库中的一条代理
 
 接口：http://127.0.0.1:8888/ip/<string:ip>/
 
