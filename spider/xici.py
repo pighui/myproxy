@@ -10,24 +10,26 @@
 
 import time
 from queue import Queue
+from threading import Thread
+
 import requests
 from lxml import etree
 from util.html import to_html
 from worker.tester import Tester
-from settings import DELAY, MAX_PAGE, DEBUG, GETTER_DELAY
+from settings import DELAY, MAX_PAGE, DEBUG
 from util.header import get_header
 
 
-class Xici():
+class Xici(Thread):
 
     def __init__(self):
+        super().__init__()
         self.urls = ['https://www.xicidaili.com/nn/' + str(i + 1) + '/' for i in range(MAX_PAGE)] + \
                     ['https://www.xicidaili.com/nt/' + str(i + 1) + '/' for i in range(MAX_PAGE)]
         self.q_xici = Queue()
         self.delay = DELAY
         self.test_xici = Tester()
         self.init_queue()
-        self.get_xici()
 
     def init_queue(self):
         for url in self.urls:
@@ -62,4 +64,7 @@ class Xici():
                      range(len(ip_list))]
         for data in data_list:
             self.test_xici.save_ip(data)
+        self.get_xici()
+
+    def run(self):
         self.get_xici()

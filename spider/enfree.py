@@ -9,25 +9,26 @@
 
 import time
 from queue import Queue
+from threading import Thread
+
 from lxml import etree
 import requests
 from util.html import to_html
 from worker.tester import Tester
-from settings import MAX_PAGE, DELAY, DEBUG, GETTER_DELAY
+from settings import MAX_PAGE, DELAY, DEBUG
 from util.header import get_header
 
 
-class Enfree():
+class Enfree(Thread):
 
     def __init__(self):
+        super().__init__()
         self.urls = ['http://www.89ip.cn/index_%s.html' % str(i + 1) for i in range(MAX_PAGE)]
         self.q_enfree = Queue()
         self.delay = DELAY
         self.test_enfree = Tester()
         # 初始化队列
         self.init_queue()
-        # 运行爬虫
-        self.get_enfree()
 
     def init_queue(self):
         for url in self.urls:
@@ -63,4 +64,8 @@ class Enfree():
                      range(len(ip_list))]
         for data in data_list:
             self.test_enfree.save_ip(data)
+        self.get_enfree()
+
+    def run(self):
+        # 运行爬虫
         self.get_enfree()

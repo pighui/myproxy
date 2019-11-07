@@ -10,23 +10,25 @@
 
 import time
 from queue import Queue
+from threading import Thread
+
 from lxml import etree
 import requests
 from util.html import to_html
 from worker.tester import Tester
-from settings import MAX_PAGE, DELAY, DEBUG, GETTER_DELAY
+from settings import MAX_PAGE, DELAY, DEBUG
 from util.header import get_header
 
 
-class Kuai():
+class Kuai(Thread):
     def __init__(self):
+        super().__init__()
         self.urls = ['https://www.kuaidaili.com/free/inha/' + str(i + 1) + '/' for i in range(MAX_PAGE)] + \
                     ['https://www.kuaidaili.com/free/intr/' + str(i + 1) + '/' for i in range(MAX_PAGE)]
         self.q_kuai = Queue()
         self.delay = DELAY
         self.test_kuai = Tester()
         self.init_queue()
-        self.get_kuai()
 
     def init_queue(self):
         for url in self.urls:
@@ -61,4 +63,7 @@ class Kuai():
                      range(len(ip_list))]
         for data in data_list:
             self.test_kuai.save_ip(data)
+        self.get_kuai()
+
+    def run(self):
         self.get_kuai()

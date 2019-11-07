@@ -8,24 +8,26 @@
 # http://www.qydaili.com/free/?action=china&page=
 
 from queue import Queue
+from threading import Thread
+
 from lxml import etree
 import time
 import requests
 from util.html import to_html
 from worker.tester import Tester
-from settings import MAX_PAGE, DELAY, DEBUG, GETTER_DELAY
+from settings import MAX_PAGE, DELAY, DEBUG
 from util.header import get_header
 
 
-class Qiyun():
+class Qiyun(Thread):
 
     def __init__(self):
+        super().__init__()
         self.urls = ['http://www.qydaili.com/free/?action=china&page=' + str(i + 1) + '/' for i in range(MAX_PAGE)]
         self.q_qiyun = Queue()
         self.delay = DELAY
         self.test_qiyun = Tester()
         self.init_queue()
-        self.get_qiyun()
 
     def init_queue(self):
         for url in self.urls:
@@ -60,4 +62,7 @@ class Qiyun():
                      range(len(ip_list))]
         for data in data_list:
             self.test_qiyun.save_ip(data)
+        self.get_qiyun()
+
+    def run(self):
         self.get_qiyun()

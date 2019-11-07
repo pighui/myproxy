@@ -8,24 +8,26 @@
 # http://www.66ip.cn/index.html
 
 from queue import Queue
+from threading import Thread
+
 from lxml import etree
 import time
 import requests
 from worker.tester import Tester
-from settings import MAX_PAGE, DELAY, DEBUG, GETTER_DELAY
+from settings import MAX_PAGE, DELAY, DEBUG
 from util.header import get_header
 from util.html import to_html
 
 
-class Ssfree():
+class Ssfree(Thread):
 
     def __init__(self):
+        super().__init__()
         self.urls = ['http://www.66ip.cn/%s.html' % str(i + 1) for i in range(MAX_PAGE)]
         self.q_ssfree = Queue()
         self.delay = DELAY
         self.test_ssfree = Tester()
         self.init_queue()
-        self.get_ssfree()
 
     def init_queue(self):
         for url in self.urls:
@@ -61,4 +63,7 @@ class Ssfree():
                          range(len(ip_list))]
             for data in data_list:
                 self.test_ssfree.save_ip(data)
+        self.get_ssfree()
+
+    def run(self):
         self.get_ssfree()
