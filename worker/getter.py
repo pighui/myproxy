@@ -15,21 +15,14 @@ from spider.xici import Xici
 class Getter(Thread):
     def __init__(self):
         super().__init__()
-        self.ssfree_spider = Ssfree()
-        self.enfree_spider = Enfree()
-        self.kuai_spider = Kuai()
-        self.qiyun_spider = Qiyun()
-        self.xici_spider = Xici()
-        self.task_list = [self.ssfree_spider, self.enfree_spider, self.kuai_spider, self.qiyun_spider, self.xici_spider]
-        self.thread_list = []
-        # 创建线程列表
-        for task in self.task_list:
-            t = Thread(target=task)
-            self.thread_list.append(t)
 
     def run(self):
+        ssfree_spider = Ssfree()
+        enfree_spider = Enfree()
+        kuai_spider = Kuai()
+        qiyun_spider = Qiyun()
+        xici_spider = Xici()
+        thread_list = [ssfree_spider, enfree_spider, kuai_spider, qiyun_spider, xici_spider]
         # 启动线程
-        for t in self.thread_list:
+        for t in thread_list:
             t.start()
-        for t in self.thread_list:
-            t.join()

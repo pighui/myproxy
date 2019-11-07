@@ -13,6 +13,9 @@ from worker.tester import Tester
 
 class Scheduler():
     def schedule_tester(self):
+        '''
+        定时测试数据库中的代理
+        '''
         print('测试器开始运行')
         tester = Tester()
         while True:
@@ -27,9 +30,7 @@ class Scheduler():
         getter = Getter()
         while True:
             getter.run()
-            time.sleep(1)
-            print('休眠好了')
-            # time.sleep(GETTER_DELAY * 60 * 60)
+            time.sleep(GETTER_DELAY * 60 * 60)
 
     def schedule_api(self):
         """
@@ -45,6 +46,7 @@ class Scheduler():
             api_process.start()
             # 阻塞一会 等待web启动再运行getter和tester
             api_process.join(timeout=DELAY)
+
         if GETTER_ENABLED:
             getter_process = Process(target=self.schedule_getter)
             getter_process.start()
