@@ -1,6 +1,8 @@
 # myproxy
 一个免费的IP代理池
 
+预览地址：[点击这里](http://122.112.231.109:8888/ip/random/)  **单机勿压**
+
 如果对您有帮助，希望给个 Star ⭐，谢谢！😁😘🎁🎉
 
 Github 项目地址 ：[pighui](https://github.com/pighui)/[myproxy](<https://github.com/pighui/myproxy>)
