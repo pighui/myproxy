@@ -8,7 +8,7 @@ first_run = True
 class IPDao():
     def __init__(self):
         global first_run
-        self.db = DB()  # cursor对象
+        self.db = DB()  # conn对象
         self.table_name = TABLE_NAME
         self.database_name = DATABASE_NAME
         self.create_table_sql = '''create table if not exists proxies(id int PRIMARY key auto_increment,
@@ -56,7 +56,7 @@ class IPDao():
     # 判断表是否存在
     def table_exists(self):
         with self.db as c:
-            self.change_database(c)
+            self.change_database()
             sql = "show tables"
             c.execute(sql)
             tables = c.fetchall()
@@ -72,9 +72,9 @@ class IPDao():
                 except:
                     print("Failed create table " + self.table_name)
 
-    def change_database(self, cursor):
-        change_database_sql = 'use %s' % self.database_name
-        cursor.execute(change_database_sql)
+    def change_database(self):
+        with self.db as c:
+            c.execute('use %s' % self.database_name)
 
     def insert(self, **item):
         sql = "insert into proxies(%s) values(%s)"
@@ -82,7 +82,7 @@ class IPDao():
         val_cols = ', '.join('%({})s'.format(k) for k in item.keys())
         res_sql = sql % (cols, val_cols)
         with self.db as c:
-            self.change_database(c)
+            self.change_database()
             try:
                 c.execute(res_sql, args=item)
             except:
@@ -99,14 +99,14 @@ class IPDao():
         sql = '''select protocol, ip, port from proxies where anonymity=%s and protocol='%s' order by -score limit %s;''' % (
             anonymity, protocol, count)
         with self.db as c:
-            self.change_database(c)
+            self.change_database()
             c.execute(sql)
             result = c.fetchall()
             return result
 
     def query_all(self):
         with self.db as c:
-            self.change_database(c)
+            self.change_database()
             c.execute('select protocol, ip, port from proxies')
             result = c.fetchall()
         return result
@@ -115,7 +115,7 @@ class IPDao():
         # 更新
         sql = 'update proxies set port=%(port)s,protocol=%(protocol)s,score=%(score)s where ip=%(ip)s'
         with self.db as c:
-            self.change_database(c)
+            self.change_database()
             try:
                 c.execute(sql, args=values)
             except:
@@ -126,7 +126,7 @@ class IPDao():
 
     def delete(self, ip):
         with self.db as c:
-            self.change_database(c)
+            self.change_database()
             try:
                 c.execute('delete from proxies where ip=%s', args=(ip,))
             except:

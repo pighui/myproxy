@@ -11,6 +11,8 @@ class DB():
         # print('--Connect database OK--')
 
     def __enter__(self):
+        # 检查当前连接是否有效
+        self.conn.ping(reconnect=True)
         # 进入上下文时，需要返回一个cursor对象
         return self.conn.cursor(cursor=DictCursor)
 
