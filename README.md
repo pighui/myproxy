@@ -33,18 +33,18 @@ git clone git@github.com:pighui/myproxy.git
 
 至少mysql3.7以上
 
-### 3.修改配置文件
+## 3.修改配置文件
 
 修改项目根目录下的settings.py文件
 
-### 4.安装依赖包
+## 4.安装依赖包
 
 ```bash
 cd myproxy
 pip3 install -r requirements.txt
 ```
 
-### 5.启动项目
+## 5.启动项目
 
 ```bash
 python3 run.py
