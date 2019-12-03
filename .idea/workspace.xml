@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f529aa4e-3693-40f6-9cfa-50f8e9f87da1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/dao/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/dao/__init__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,15 +39,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/write_log.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/update_log.txt">
           <provider selected="true" editor-type-id="text-editor" />
@@ -111,7 +101,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/dao/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="158">
@@ -119,6 +109,15 @@
               <folding>
                 <element signature="e#31#45#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -200,7 +199,6 @@
         <option value="$PROJECT_DIR$/spider/__init__.py" />
         <option value="$PROJECT_DIR$/web/api/get_proxy.py" />
         <option value="$PROJECT_DIR$/write_log.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/update_log.txt" />
         <option value="$PROJECT_DIR$/worker/tester.py" />
         <option value="$PROJECT_DIR$/spider/lab.py" />
@@ -216,6 +214,7 @@
         <option value="$PROJECT_DIR$/worker/scheduler.py" />
         <option value="$PROJECT_DIR$/web/dao/ip_dao.py" />
         <option value="$PROJECT_DIR$/web/dao/__init__.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -442,7 +441,7 @@
       <workItem from="1573002262079" duration="7392000" />
       <workItem from="1573106110673" duration="10204000" />
       <workItem from="1573613038407" duration="2407000" />
-      <workItem from="1575356207461" duration="339000" />
+      <workItem from="1575356207461" duration="421000" />
     </task>
     <servers />
   </component>
@@ -464,7 +463,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180524000" />
+    <option name="totallyTimeSpent" value="180606000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -582,13 +581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -761,6 +753,13 @@
           <folding>
             <element signature="e#31#45#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
         </state>
       </provider>
     </entry>
