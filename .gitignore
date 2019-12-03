@@ -107,4 +107,4 @@ venv.bak/
 write_log.py
 
 # pycharm
-.idea
+.idea/
