@@ -29,7 +29,7 @@ class DB():
             # 如果是正常情况，则提交事务
             self.conn.commit()
             # 关闭连接
-            self.close()
+            # self.close()
         # 告诉解析器自己处理异常
         return True
 
